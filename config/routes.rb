@@ -1,4 +1,7 @@
 Pinmystory::Application.routes.draw do
+  resources :stories
+
+
   get "sessions/new"
 
   get "sessions/create"

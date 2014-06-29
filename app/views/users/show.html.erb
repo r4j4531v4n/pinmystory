@@ -1,0 +1,46 @@
+<% if current_user %>
+<div class="panel right">
+    <h1>Post a story</h1>
+    <p>
+    <%= form_for @story do |f| %>
+        <%= f.text_area :content, placeholder: 'You have 55 words', class: 'storyText' %>
+        <%= f.submit "Pin it!" , class: 'btn btn-info'%>
+    <% end %>
+    </p>
+</div>
+<% end %>
+<div  class="panel left">
+    <h1>Profile</h1>
+    <div class="storyWrapper">
+        <img class="avatar" src="<%= @user.avatar_url %>">
+        <span class="name"><%= @user.name %></span> 
+        <p>
+        <%= @user.stories.size %> Stories
+        <span class="spacing"><%= @user.followers.count %> Followers</span>
+        <span class="spacing"><%= @user.followeds.count %> Following</span>
+        <% if current_user and @user != current_user %>
+            <% if current_user.following? @user %>
+                <%= form_tag relationship_path, method: :delete do %>
+                    <%= submit_tag "Unfollow", class: 'btn btn-success'%>
+                <% end %>
+            <% else %>
+                <%= form_for @relationship do %>
+                    <%= hidden_field_tag :followed_id, @user.id %>
+                    <%= submit_tag "Follow", class: 'btn btn-success' %>
+                <% end %>
+            <% end %>
+        <% end %>
+        </p>
+    </div>
+</div>
+<div class="panel left">
+    <h1>Stories</h1>
+    <% @user.Stories.each do |story| %>
+        <div class="storyWrapper">
+            <img class="avatar" src="<%= @user.avatar_url %>">
+            <span class="name"><%= @user.name %></span>
+            <span class="time"><%= time_ago_in_words(story.created_at) %></span>
+            <p> <%= story.content %> </p>
+        </div>
+    <% end %>
+</div>

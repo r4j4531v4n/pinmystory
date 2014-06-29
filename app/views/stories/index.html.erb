@@ -1,0 +1,10 @@
+<ul class="myclass">
+    <% @stories.each do |story| %>
+        <li>
+            <a href="<%= user_path story.user %>"><h2> <%= story.user.name%></h2> 
+            <p> <%= story.content %> </p>
+            </a>            
+        </li>
+    <% end %>
+    
+  </ul>

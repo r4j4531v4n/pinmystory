@@ -4,6 +4,9 @@ Pinmystory::Application.routes.draw do
 
   resources :stories
 
+  root to: 'stories#index'
+
+  get 'buddies', to: 'users#buddies', as: 'buddies'
 
   get "sessions/new"
 

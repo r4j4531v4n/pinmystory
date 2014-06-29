@@ -1,0 +1,33 @@
+<style>
+#signup{
+	margin-top:150px;
+	}
+
+</style>
+
+
+<div class='row-fluid' id='signup'>
+	
+	<%= form_for @user do |f| %>
+	<div class="span4">
+		<% if @user.errors.any? %>
+			<ul style="list-style:none">
+				<% @user.errors.full_messages.each do |message| %>
+					<li class="alert"><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		</div>
+		
+		<div class="span4">
+		<ul style="list-style:none">
+		<li><%= f.text_field :email, class: 'input-large', placeholder: 'email' %></li>
+		<li><%= f.text_field :username, class: 'input-large', placeholder: 'username' %></li>
+		<li><%= f.text_field :name, class: 'input-large', placeholder: 'name' %></li>
+		<li><%= f.text_field :password, class: 'input-large', placeholder: 'password' %></li>
+		<li><%= f.text_field :password_confirmation, class: 'input-large', placeholder: 'password' %></li>
+		<li><%= f.submit 'Create Account', class: 'btn btn-info' %></li>
+		</ul>
+		</div>
+	<% end %>
+</div>

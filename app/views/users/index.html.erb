@@ -1,0 +1,19 @@
+<div class='panel left'>
+	<h1>Profile</h1>
+    <% @users.each do |user| %>
+    <div class="storyWrapper">
+        <a href="<%= user_path user %>">
+        <img class="avatar" src="<%= user.avatar_url %>">
+        <span class="name"><%= user.name %></span>
+        </a>
+        <p>
+        <%= user.stories.size %> Stories
+        <span class="spacing"><%= user.followers.count %> Followers</span>
+        <span class="spacing"><%= user.followeds.count %> Following</span>
+        </p>
+        <% if user.stories.first %>
+        	<p><%= user.stories.first.content %></p>
+        <% end %>
+    </div>
+    <% end %>
+</div>

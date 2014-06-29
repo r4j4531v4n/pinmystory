@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pinmystory</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	
+	
+    
+    <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> 
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+     <title>Pin my story</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    
 </head>
+
+<style>
+body{
+background:#666;
+  color:#fff;
+}
+#customlink{
+text-align: center;
+vertical-align:middle;
+height: 26px;
+}
+
+</style>
+
 <body>
 
-<%= yield %>
+<div class="navbar navbar-fixed-top navbar-inverse">
+                  <div class="navbar-inner">
+                  <div class="offset2">
+                  <ul class="nav">
+                  <li><a href='<%= root_url %>'>Pin my story</a></li>
+                  <li><a href="http://rajaselvan.github.com">Meet the developer</a></li>
+                  </ul>
+		              </div>  
+                      <% if current_user %>
+                      
+                      <ul class="nav pull-right">
+		      <li><%= link_to "Pinboard", stories_path %></li>
+                      <li><%= link_to "Buddies", buddies_path %></li>
+                      <li><%= link_to "My Profile", current_user %></li>
+                      <li><%= link_to "Log Out", sessions_destroy_path %></li>
+		      </ul>
+                      
+                      <% else %>
+                            
+                            <%= form_tag sessions_create_path do  %>
+                            <ul class="navbar-form pull-right">
+			    
+                            <%= text_field_tag :username, nil, class: "input-large", placeholder: "username" %> 
+                            <%= password_field_tag :password, nil, class: "input-large", placeholder: "password" %>
+                            <%= submit_tag "Login", class: "btn btn-primary" %>
+			    <a href="/users/new" id="customlink" class="btn btn-warning"> Sign Up </a>
+			    
+                            </ul>
+                            <% end %>
+                            
+                      <% end %>
 
+                     </div>
+</div>
+    
+    <div id="content">
+        <div class="wrapper">
+            <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, class: "alert" %>
+            <% end %>
+            <%= yield %>
+        </div>
+    </div>
+    
 </body>
 </html>

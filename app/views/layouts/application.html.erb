@@ -8,6 +8,7 @@
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
      <title>Pin my story</title>
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= favicon_link_tag 'favicon.ico' %>
     
 </head>
 
@@ -31,7 +32,7 @@ height: 26px;
                   <div class="offset2">
                   <ul class="nav">
                   <li><a href='<%= root_url %>'>Pin my story</a></li>
-                  <li><a href="http://rajaselvan.github.com">Meet the developer</a></li>
+                  <li><a href="http://rajaselvan.github.com" target="_blank">Meet the developer</a></li>
                   </ul>
 		              </div>  
                       <% if current_user %>

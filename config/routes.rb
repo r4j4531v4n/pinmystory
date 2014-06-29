@@ -1,4 +1,7 @@
 Pinmystory::Application.routes.draw do
+  resources :relationships
+
+
   resources :stories
 
 
